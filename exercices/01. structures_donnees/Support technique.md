@@ -11,15 +11,15 @@
 - Déclarez une liste vide, `file_attente`, pour représenter la queue des demandes de support.
 
 1. **Ajouter une Demande de Support (`ajouter_demande`) :**
-
+   
 - Créez une fonction `ajouter_demande(client, demande)` qui prend le nom du client et le détail de sa demande en paramètres, et les ajoute à la fin de la file d'attente.
 
 2. **Traiter une Demande de Support (`traiter_demande`) :**
-
+   
 - Implémentez une fonction `traiter_demande()` qui retire et retourne la première demande de la file d'attente, simulant ainsi le traitement d'une demande de support. Affichez le nom du client et le détail de la demande traitée.
 
 3. **Afficher la File d'Attente (`afficher_file_attente`) :**
-
+   
 - Écrivez une fonction `afficher_file_attente()` qui affiche toutes les demandes actuellement dans la file d'attente, en indiquant l'ordre dans lequel elles seront traitées.
 
 ## Exemple de Scénario
