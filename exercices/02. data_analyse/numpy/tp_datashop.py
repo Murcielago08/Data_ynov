@@ -1,49 +1,65 @@
-# ICI FO CODé
 import numpy as np
 
-#Ex 1
+# Exercice 1
+
 np.random.seed(0)
-ventes = np.random.randint(0, 1000, (12, 5))
-print(ventes, "\n")
+ventes = np.random.randint(0, 1001, (12, 5))
+print(ventes)
 
-#Ex 2
-moyenne_ventes = np.mean(ventes, axis=0).round(2)
-print(moyenne_ventes, "\n")
+# Exercice 2
 
-#Ex 3
+moyenne_ventes = np.mean(ventes, axis=0).astype(int)
+# Average ?
+# moyenne_ventes = np.average(ventes, axis=0).astype(int)
+print(moyenne_ventes)
+
+# Exercice 3
+
 print(ventes[:, 0] > moyenne_ventes[0])
 print(np.where(ventes[:, 0] > moyenne_ventes[0]))
-print(np.where(ventes[:, 0] > moyenne_ventes[0])[0] + 1, "\n")
+print(np.where(ventes[:, 0] > moyenne_ventes[0])[0] + 1)
 
-#Ex 4
-print(np.where(ventes[:, 1] > ventes[:, 2])[0] + 1, "\n")
+# Exercice 4
 
-#Ex 5
-tot = np.sum(ventes, axis=0)
-print(tot)
-print(np.argmax(tot), "\n")
+print(np.where(ventes[:, 1] > ventes[:, 2])[0] + 1)
 
-#Ex 6
-mois_ventes_faible = np.where(np.all(ventes < 500, axis=1))[0]+1
-print(mois_ventes_faible, "\n")
+# Exercice 5
 
-#Ex 7
+total_ventes_par_produit = np.sum(ventes, axis=0)
+print(total_ventes_par_produit)
+print(np.argmax(total_ventes_par_produit))
+
+# Exerice 6
+
+mois_ventes_faibles = np.where(np.all(ventes < 500, axis=1))[0] + 1
+print(mois_ventes_faibles)
+
+# Exercice 7
+
 augmentation_ventes = np.diff(ventes, axis=0) > 0
 print(augmentation_ventes)
 
-deltas_ventes = np.diff(ventes, axis=0)
-print(deltas_ventes)
+delta_ventes = np.diff(ventes, axis=0)
+print(delta_ventes)
 
-for i in range(deltas_ventes.shape[1]):
-    print(deltas_ventes[:, i] > 0)
-    mois_aug = np.where(deltas_ventes[:, i] > 0)[0] + 2
-    print(mois_aug)
+for i in range(delta_ventes.shape[1]):
+    print(delta_ventes[:, i] > 0)
+    mois_augmentation = np.where(delta_ventes[:, i] > 0)[0] + 2
+    print(mois_augmentation)
 
-#Ex 8
+# Exercice 8
+    
+variations_ventes = np.diff(ventes, axis=0) / ventes[:-1] * 100
+print(variations_ventes)
+tendance_moyenne = np.mean(variations_ventes, axis=0)
+print(np.argmax(tendance_moyenne) + 1)
+print(np.argmin(tendance_moyenne) + 1)
 
-#Ex 9
+# Exercices 9
+# DONNER LA CORRECTION
 
-# Bonus
+
+# BONUS
 
 moyenne_mensuelle = np.mean(ventes, axis=1)
 
@@ -51,9 +67,9 @@ mois = np.arange(1, 13)
 
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(10,6))
+plt.figure(figsize=(10, 6))
 plt.plot(mois, moyenne_mensuelle, marker="s", linestyle="--", color="blue", label="Moyenne des ventes")
-plt.title("Moyenne des ventes mensuelle pour l'ensemble des produits")
+plt.title("Moyenne des ventes mensuelles pour l'ensemble des produits")
 plt.xlabel("Mois")
 plt.ylabel("Moyenne des ventes")
 plt.xticks(mois)
