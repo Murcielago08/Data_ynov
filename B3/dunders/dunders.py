@@ -1,6 +1,3 @@
-from typing import TypedDict
-from __future__ import annotations
-
 class Car:
     def __init__(self, color, sku, speed):
         self.color = color

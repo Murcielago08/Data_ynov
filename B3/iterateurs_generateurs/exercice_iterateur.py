@@ -1,36 +1,24 @@
-from __future__ import annotations
-from rich.pretty import pprint
 from typing import Iterator
 
-class InvoiceNumberIterator :
-    def __init__(self, prefix: str = "INV" , start: int = 1) -> None :
-        self.prefix = prefix
-        self.valeur = start
+class InvoiceNumberIterator:
+    def __init__(self, prefix: str = "FAC", start: int = 1) -> None:
+        self.prefix: str = prefix
+        self.current: int = start
 
     def __iter__(self) -> Iterator[str]:
         return self
 
     def __next__(self) -> str:
-        if self.valeur > 100:
-            raise StopIteration
-        else:
-            invoice_number = f"{self.prefix}-{self.valeur:03}"
-            self.valeur += 1
-            return invoice_number
-        
-        
-# Test
-if __name__ == "__main__":
-    test = InvoiceNumberIterator("FAC", 2)
+        invoice_number: str = f"{self.prefix}-{self.current:03}"
+        self.current += 1
+        return invoice_number
 
-    print(next(test))
-    print(next(test))
-    
-    print("---------------------\n")
-    
-    custom = InvoiceNumberIterator(prefix="INV", start=42)
-    
-    print(next(custom))
-    print(next(custom))
-    print(next(custom))
-    print(next(custom))
+
+invoices: InvoiceNumberIterator = InvoiceNumberIterator()
+
+print(next(invoices))  # FAC-001
+print(next(invoices))  # FAC-002
+
+custom: InvoiceNumberIterator = InvoiceNumberIterator(prefix="INV", start=42)
+print(next(custom))    # INV-042
+print(next(custom))    # INV-043

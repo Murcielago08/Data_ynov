@@ -1,11 +1,11 @@
 from datetime import date
 import csv
 from typing import TypedDict
-from __future__ import annotations
 
 from rich.pretty import pprint
 
-class Loan(TypedDict):
+
+class Loans(TypedDict):
     loan_id: str
     user_id: str
     book_id: str
@@ -14,8 +14,8 @@ class Loan(TypedDict):
     return_date: date
 
 
-def load_loans_csv(path: str) -> list[Loan]:
-    loans: list[Loan] = []
+def load_loans_csv(path: str) -> list[Loans]:
+    loans: list[Loans] = []
     with open(path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -30,18 +30,13 @@ def load_loans_csv(path: str) -> list[Loan]:
     return loans
 
 
-def get_active_loans(loans: list[Loan]) -> list[Loan]:
+def get_active_loans(loans: list[Loans]) -> list[Loans]:
     today = date.today()
-    return [
-        loan for loan in loans
-        if loan["return_date"] >= today
-    ]
+    return [loan for loan in loans if loan["return_date"] >= today]
 
 
 if __name__ == "__main__":
-    data = load_loans_csv(r'.\typage\library_loans.csv')
-
-    # pprint(data[:3])
+    data = load_loans_csv(r'.\library_loans.csv')
 
     pprint(len(data))
 
