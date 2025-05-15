@@ -133,6 +133,10 @@ env.bak/
 venv.bak/
 .venv_py/
 
+./B3/**/*.csv
+
+
+
 # Spyder project settings
 .spyderproject
 .spyproject
